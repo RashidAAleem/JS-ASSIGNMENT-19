@@ -3,26 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post App</title>
+    <title>Comment Section</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    
     <div class="container">
-        <h1>Post App</h1>
-        <div class="theme-change">
-            <button onclick="changeTheme('light')">Light Theme</button>
-            <button onclick="changeTheme('dark')">Dark Theme</button>
-        </div>
+      <!-- Theme Switcher -->
+      <div class="theme-switcher">
+        <button id="themeToggle" class="theme-btn">Toggle Theme</button>
+    </div>
+        <h2>Post</h2>
+        <form id="commentForm" class="comment-form">
+            <input type="text" id="name" class="form-control" placeholder="Your Name" required>
+            <textarea id="comment" class="form-control" placeholder="Your Comment" rows="4" required></textarea>
+            <button type="submit" class="btn">Submit</button>
+        </form>
 
-        <div class="post-form">
-            <input type="text" id="post-title" placeholder="Post Title" />
-            <textarea id="post-content" placeholder="Post Content"></textarea>
-            <button onclick="addPost()">Add Post</button>
-        </div>
+        <h3>Comments</h3>
+        <div id="commentsContainer" class="comments-container"></div>
 
-        <div class="posts-container" id="posts-container">
-            <!-- Posts will be dynamically inserted here -->
-        </div>
+      
     </div>
 
     <script src="script.js"></script>

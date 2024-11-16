@@ -1,128 +1,123 @@
-/* Global Styles */
+:root {
+    --background-light: #f4f4f4;
+    --background-dark: #2c2c2c;
+    --text-light: #333;
+    --text-dark: #f1f1f1;
+    --button-light: #007b00;
+    --button-dark: #28a745;
+}
+
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #f4f4f4;
+    min-height: 100vh;
+    margin: 0;
+    background-color: var(--background-light);
+    color: var(--text-light);
+    transition: all 0.3s ease;
 }
 
 .container {
-    width: 80%;
-    max-width: 800px;
-    margin: 0 auto;
+    width: 400px;
     padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
 }
 
-h1 {
+h2, h3 {
     text-align: center;
-    margin-bottom: 20px;
 }
 
-.theme-change {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.theme-change button {
-    margin: 0 10px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-}
-
-.post-form {
+.comment-form {
     display: flex;
     flex-direction: column;
-    margin-bottom: 30px;
+    gap: 15px;
+    margin-bottom: 20px;
 }
 
-.post-form input,
-.post-form textarea {
+.form-control {
     padding: 10px;
-    margin: 5px 0;
     font-size: 16px;
-    border-radius: 5px;
     border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-.post-form button {
+.btn {
     padding: 10px;
-    font-size: 16px;
-    background-color: #4CAF50;
+    background-color: var(--button-light);
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 10px;
+    transition: background-color 0.3s;
 }
 
-.post-form button:hover {
-    background-color: #45a049;
+.btn:hover {
+    background-color: #0056b3;
 }
 
-.posts-container {
-    margin-top: 30px;
+.comments-container {
+    margin-top: 20px;
 }
 
-.post {
-    background-color: #f9f9f9;
+.comment-card {
+    background-color: #eaeaea;
     padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.post h2 {
-    margin: 0;
-    font-size: 1.5rem;
+.comment-actions {
+    display: flex;
+    gap: 10px;
 }
 
-.post p {
-    font-size: 1rem;
-    margin-top: 10px;
-}
-
-/* Dark Theme Styles */
-body.dark-theme {
-    background-color: #333;
+.edit-btn, .delete-btn {
+    background-color: #ff9800;
     color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.dark-theme .container {
+.edit-btn:hover { background-color: #e68a00; }
+.delete-btn:hover { background-color: #d9534f; }
+
+.theme-switcher {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.theme-btn {
+    padding: 10px;
+    background-color: var(--button-dark);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+body.dark {
+    background-color: var(--background-dark);
+    color: var(--text-dark);
+}
+
+body.dark .container {
     background-color: #444;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-.dark-theme .post {
+body.dark .btn {
+    background-color: var(--button-dark);
+}
+
+body.dark .comment-card {
     background-color: #555;
-}
-
-.dark-theme .post-form input,
-.dark-theme .post-form textarea {
-    background-color: #666;
-    color: white;
-    border-color: #888;
-}
-
-.dark-theme .post-form button {
-    background-color: #28a745;
-}
-
-.dark-theme .post-form button:hover {
-    background-color: #218838;
-}
-
-.dark-theme .theme-change button {
-    background-color: #444;
-    color: white;
 }

@@ -1,38 +1,88 @@
-// Function to add a post
-function addPost() {
-    var title = document.getElementById('post-title').value;
-    var content = document.getElementById('post-content').value;
-    
-    if (title === "" || content === "") {
-        alert("Please enter both title and content!");
-        return;
-    }
+var commentForm = document.getElementById('commentForm');
+var commentsContainer = document.getElementById('commentsContainer');
+var themeToggle = document.getElementById('themeToggle');
+var isDarkMode = false;
+var comments = [];
 
-    // Create a new post element
-    var postContainer = document.createElement('div');
-    postContainer.classList.add('post');
-    
-    var postTitle = document.createElement('h2');
-    postTitle.innerText = title;
-    
-    var postContent = document.createElement('p');
-    postContent.innerText = content;
-    
-    postContainer.appendChild(postTitle);
-    postContainer.appendChild(postContent);
-    
-    document.getElementById('posts-container').appendChild(postContainer);
+// Event listener for form submission
+commentForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    addComment();
+});
 
-    // Clear the input fields after adding the post
-    document.getElementById('post-title').value = '';
-    document.getElementById('post-content').value = '';
-}
+// Function to add a new comment
+function addComment() {
+    var name = document.getElementById('name').value.trim();
+    var commentText = document.getElementById('comment').value.trim();
+    var timestamp = new Date();
 
-// Function to change themes
-function changeTheme(theme) {
-    if (theme === 'dark') {
-        document.body.classList.add('dark-theme');
-    } else {
-        document.body.classList.remove('dark-theme');
+    if (name && commentText) {
+        var comment = {
+            id: Date.now(),
+            name: name,
+            text: commentText,
+            time: timestamp
+        };
+        comments.unshift(comment);
+        renderComments();
+        clearForm();
     }
 }
+
+// Function to render comments
+function renderComments() {
+    commentsContainer.innerHTML = '';
+    comments.forEach(function(comment) {
+        var commentCard = document.createElement('div');
+        commentCard.className = 'comment-card';
+        
+        var timeAgo = formatTimeAgo(comment.time);
+
+        commentCard.innerHTML = `
+            <p><strong>${comment.name}:</strong> <span class="comment-text">${comment.text}</span></p>
+            <p class="comment-time">${timeAgo}</p>
+            <div class="comment-actions">
+                <button class="edit-btn" onclick="editComment(${comment.id})">Edit</button>
+                <button class="delete-btn" onclick="deleteComment(${comment.id})">Delete</button>
+            </div>
+        `;
+        commentsContainer.appendChild(commentCard);
+    });
+}
+
+// Function to clear the form
+function clearForm() {
+    document.getElementById('name').value = '';
+    document.getElementById('comment').value = '';
+}
+
+// Function to edit a comment
+function editComment(id) {
+    var comment = comments.find(c => c.id === id);
+    document.getElementById('name').value = comment.name;
+    document.getElementById('comment').value = comment.text;
+    deleteComment(id);
+}
+
+// Function to delete a comment
+function deleteComment(id) {
+    comments = comments.filter(c => c.id !== id);
+    renderComments();
+}
+
+// Function to format time ago
+function formatTimeAgo(timestamp) {
+    var now = new Date();
+    var diffInSeconds = Math.floor((now - new Date(timestamp)) / 1000);
+
+    if (diffInSeconds < 60) return 'Just now';
+    if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)} minutes ago`;
+    if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)} hours ago`;
+    return `${Math.floor(diffInSeconds / 86400)} days ago`;
+}
+
+// Theme toggle function
+themeToggle.addEventListener('click', function() {
+    isDarkMode = !isDarkMode;
+    document.body.classList.toggle('dark', isDarkMode);
+});
