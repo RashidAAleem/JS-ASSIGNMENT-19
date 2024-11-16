@@ -1,0 +1,128 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.theme-change {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.theme-change button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+.post-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.post-form input,
+.post-form textarea {
+    padding: 10px;
+    margin: 5px 0;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.post-form button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.post-form button:hover {
+    background-color: #45a049;
+}
+
+.posts-container {
+    margin-top: 30px;
+}
+
+.post {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.post h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.post p {
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+/* Dark Theme Styles */
+body.dark-theme {
+    background-color: #333;
+    color: white;
+}
+
+.dark-theme .container {
+    background-color: #444;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme .post {
+    background-color: #555;
+}
+
+.dark-theme .post-form input,
+.dark-theme .post-form textarea {
+    background-color: #666;
+    color: white;
+    border-color: #888;
+}
+
+.dark-theme .post-form button {
+    background-color: #28a745;
+}
+
+.dark-theme .post-form button:hover {
+    background-color: #218838;
+}
+
+.dark-theme .theme-change button {
+    background-color: #444;
+    color: white;
+}
